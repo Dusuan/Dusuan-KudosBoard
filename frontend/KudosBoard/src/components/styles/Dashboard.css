@@ -1,0 +1,15 @@
+.Dashboard {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 1;
+  background-color: beige;
+}
+.Boards {
+  display: grid;
+  gap: 40px;
+  justify-content: center;
+
+  grid-template-columns: repeat(auto-fill, 300px);
+}

@@ -1,0 +1,7 @@
+.KudoBoard{
+    align-self: center;
+    width: 200px;
+    background-color: aqua;
+    justify-content: center;
+    place-self: center;
+}
