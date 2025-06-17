@@ -14,7 +14,7 @@
   border-radius: 10px;
   background-color: rgb(40, 40, 40);
 }
-.NewBoard{
+.NewBoard {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
@@ -25,13 +25,16 @@
   z-index: 1000;
   overflow-y: auto;
 }
-.Form{
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    align-items: center;
-    padding-bottom: 20px;
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  padding-bottom: 20px;
 }
-.FormContainer{
-
+.FormContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }

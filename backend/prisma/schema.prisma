@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model kudoboard {
+  KudoboardId Int     @id @default(autoincrement())
+  title       String
+  author      String
+  type        String
+  img         String?
+
+  //relation
+
+  kudocards kudocard[]
+}
+
+model kudocard {
+  KudocardId Int    @id @default(autoincrement())
+  title      String
+  creator    String
+  media      String
+  upvotes    Int
+  isPinned   Boolean
+
+  //relation
+
+  kudocomments kudocomment[]
+
+  kudoboard   kudoboard @relation(fields: [kudoboardId], references: [KudoboardId])
+  kudoboardId Int
+}
+
+model kudocomment {
+  KudocommentId Int    @id @default(autoincrement())
+  text          String
+  username      String
+
+  //relation
+
+  kudocard           kudocard? @relation(fields: [kudocardKudocardId], references: [KudocardId])
+  kudocardKudocardId Int?
+}

@@ -1,35 +1,20 @@
-const express = requie('express')
+require('dotenv').config()
+const express = require('express')
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
+const router = express.Router()
+const { PrismaClient } = require('./generated/prisma')
+const prisma = new PrismaClient()
 
+const kudoboards = require('./routes/kudoboards')
+
+app.use('/kudoboards', kudoboards)
+
+app.get('/', ({req, res})=> {
+    res.send("Defualt")
+})
 
 app.listen(PORT, () => {
-    console.log(`Api woking on ${PORT}`)
+    console.log(`Api woking on localhost:${PORT}`)
 })
 
-// GET --------------------------------------------------------------------------------
-// get all boards
-app.get("dashboard/boards", (req,res) => {
-
-})
-//get specific board
-app.get("dashboard/board/:boardId", () => {
-
-})
-//get board specific board posts
-app.get("dashboard/board/:boardId/kudos", () => {
-
-})
-// search boards by query
-app.get("dashboard/board/:query", ()=>{
-})
-
-// POST --------------------------------------------------------------------------------
-
-
-// PUT --------------------------------------------------------------------------------
-
-
-// DELETE --------------------------------------------------------------------------------
-
-app.delete("/board/")
