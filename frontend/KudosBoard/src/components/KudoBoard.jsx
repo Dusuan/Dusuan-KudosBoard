@@ -9,7 +9,7 @@ const KudoBoard = ({id, name, description, image, author}) => {
   return (
     <div className="KudoBoard">
       <div className="">
-        <img width={200} height={300} src={`${image !== null ? `${image}` : "../../top.webp"}`} />
+        <img className="card-image" width={200} height={300} src={`${image !== null ? `${image}` : "../../top.webp"}`} />
       </div>
       <div>
         <div>
