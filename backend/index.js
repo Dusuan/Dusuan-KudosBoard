@@ -6,7 +6,10 @@ const router = express.Router()
 const { PrismaClient } = require('./generated/prisma')
 const prisma = new PrismaClient()
 
+app.use(express.json());
+
 const kudoboards = require('./routes/kudoboards')
+
 
 app.use('/kudoboards', kudoboards)
 

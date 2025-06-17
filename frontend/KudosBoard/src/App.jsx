@@ -1,13 +1,11 @@
 import "./App.css";
-import Dashboard from "./components/Dashboard";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Banner from "./components/Banner";
+import NoBoards from "./components/NoBoards"
 import { useState } from "react";
-
+import { Routes, Route } from "react-router-dom";
+import Main from "./components/Main";
 function App() {
   const [IsFormOpen, setIsFormOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState("");
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -16,10 +14,23 @@ function App() {
       className="App"
       style={IsFormOpen ? { overflow: "hidden" } : { overflow: "none" }}
     >
-      <Header />
-      <Banner searchQuery={searchQuery} handleSearchChange={handleSearchChange}/>
-      <Dashboard IsFormOpen={IsFormOpen} setIsFormOpen={setIsFormOpen} />
-      <Footer />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Main
+              IsFormOpen={IsFormOpen}
+              setIsFormOpen={setIsFormOpen}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              handleSearchChange={handleSearchChange}
+            />
+          }
+        >
+        </Route>
+        <Route path="/smelse" element={<NoBoards/>}>
+        </Route>
+      </Routes>
     </div>
   );
 }
