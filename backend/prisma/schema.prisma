@@ -27,15 +27,15 @@ model kudoboard {
 }
 
 model kudocard {
-  KudocardId Int    @id @default(autoincrement())
-  title      String
-  creator    String
-  media      String
-  upvotes    Int
-  isPinned   Boolean
-
+  KudocardId  Int     @id @default(autoincrement())
+  description String
+  title       String
+  creator     String
+  media       String
+  upvotes     Int
+  isPinned    Boolean
+  datePinned  DateTime
   //relation
-
   kudocomments kudocomment[]
 
   kudoboard   kudoboard @relation(fields: [kudoboardId], references: [KudoboardId])
