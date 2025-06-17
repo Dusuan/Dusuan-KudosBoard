@@ -34,7 +34,7 @@ model kudocard {
   media       String
   upvotes     Int
   isPinned    Boolean
-  datePinned  DateTime
+  datePinned  DateTime?
   //relation
   kudocomments kudocomment[]
 

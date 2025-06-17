@@ -5,10 +5,27 @@ const prisma = new PrismaClient();
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const kudocards = prisma.kudocard.findMany({
-    where: { kudoboardId: parseInt(id) },
-  });
-  res.send(kudocards);
+  try {
+    const kudocard = await prisma.kudocard.findUnique({
+      where: { KudocardId: parseInt(id) },
+    });
+
+    res.send(kudocards);
+  } catch (e) {
+    res.send("This went wrong :" + e);
+  }
+});
+
+router.get("/all/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const kudocards = await prisma.kudocard.findMany({
+      where: { kudoboardId: parseInt(id) },
+    });
+    res.send(kudocards);
+  } catch (e) {
+    res.send("This went wrong :" + e);
+  }
 });
 
 router.post("/post/:id", async (req, res) => {
@@ -28,7 +45,7 @@ router.post("/post/:id", async (req, res) => {
     });
     res.send(kudoCard);
   } catch (e) {
-    res.send("Something went wrong ");
+    res.send("Something went wrong:  " + e);
   }
 });
 
