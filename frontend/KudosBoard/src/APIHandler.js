@@ -11,7 +11,7 @@ const DELETEoptions = {
   },
 };
 
-const url = process.env.URL
+const url = import.meta.env.VITE_URL
 
 const fetchBoards = async () => {
   const data = await fetch(`${url}/kudoboards/`)
