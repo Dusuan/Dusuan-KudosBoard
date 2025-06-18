@@ -11,8 +11,10 @@ const DELETEoptions = {
   },
 };
 
+const url = process.env.URL
+
 const fetchBoards = async () => {
-  const data = await fetch("http://localhost:9999/kudoboards/")
+  const data = await fetch(`${url}/kudoboards/`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Http error, status: ${response.status}`);
@@ -31,7 +33,7 @@ const fetchBoards = async () => {
 
 const deleteBoard = async (id) => {
   console.log("executed");
-  await fetch(`http://localhost:9999/kudoboards/delete/${id}`, DELETEoptions)
+  await fetch(`${url}/kudoboards/delete/${id}`, DELETEoptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Http error, status: ${response.status}`);
@@ -45,7 +47,7 @@ const deleteBoard = async (id) => {
 
 const postBoard = async (data) => {
   console.log("executed");
-  await fetch(`http://localhost:9999/kudoboards/post`, {
+  await fetch(`${url}/kudoboards/post`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -68,7 +70,7 @@ const postBoard = async (data) => {
 };
 
 const fetchKudos = async (id) => {
-  const data = await fetch(`http://localhost:9999/kudos/all/${id}`, GEToptions)
+  const data = await fetch(`${url}/kudos/all/${id}`, GEToptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Http error, status: ${response.status}`);
@@ -86,7 +88,7 @@ const fetchKudos = async (id) => {
 
 const deleteKudos = async (id) => {
   console.log("executed");
-  await fetch(`http://localhost:9999/kudos/delete/${id}`, DELETEoptions)
+  await fetch(`${url}/kudos/delete/${id}`, DELETEoptions)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Http error, status: ${response.status}`);
