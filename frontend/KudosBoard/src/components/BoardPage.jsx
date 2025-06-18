@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom'
 import { deleteKudos } from "../APIHandler";
 
+
 const BoardPage = () => {
   const { id } = useParams();
   const [kudos, setKudos] = useState([]);
@@ -40,6 +41,9 @@ const handleDeleteKudo = async (id) =>{
         <div>
             <button><Link to="/">Get back</Link></button>
         </div>
+
+      {/* {IsFormOpen  ? <NewBoard setIsFormOpen={setIsFormOpen}  getAllKudoBoards={getAllKudoBoards} /> : <></>} */}
+
 
       {kudos.length < 1 ? (
         <h1>No cards available</h1>

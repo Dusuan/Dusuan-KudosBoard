@@ -1,12 +1,8 @@
 import "./styles/NewBoard.css";
 import { useState } from "react";
-import { postBoard } from "../APIHandler.js";
 
-const NewBoard = ({ setIsFormOpen, getAllKudoBoards}) => {
-  const IsFormOpenHandler = () => {
-    setIsFormOpen(false);
-  };
-
+const NewKudo = () => {
+ 
   const handleSubmit =  async (e) => {
     // API post logic
     e.preventDefault();
@@ -50,4 +46,4 @@ const NewBoard = ({ setIsFormOpen, getAllKudoBoards}) => {
     </div>
   );
 };
-export default NewBoard;
+export default NewKudo;
