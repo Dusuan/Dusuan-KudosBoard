@@ -1,10 +1,18 @@
 import "./styles/KudoBoard.css";
-const KudoBoard = ({ id, name, description, image, author }) => {
+const KudoBoard = ({
+  KudoboardId,
+  title,
+  img,
+  author,
+  type,
+  deleteKudoBoard,
+}) => {
   const handleViewKudos = () => {
-    console.log(`Viewing Kudos! of: ${id}`);
+    console.log(`Viewing Kudos! of: ${KudoboardId}`);
   };
-  const handleDeleteBoard = () => {
-    console.log(`Deleting card with id: ${id}`);
+  const handleDeleteBoard = (id) => {
+    console.log(`Deleting card with id: ${KudoboardId}`);
+    deleteKudoBoard(id);
   };
   return (
     <div className="KudoBoard">
@@ -13,19 +21,18 @@ const KudoBoard = ({ id, name, description, image, author }) => {
           className="card-image"
           width={200}
           height={300}
-          src={`${image !== null ? `${image}` : "../../top.webp"}`}
+          src={`${img !== null ? `${img}` : "../../top.webp"}`}
         />
       </div>
       <div>
         <div>
-          <p>{name}</p>
+          <p>{title}</p>
         </div>
-        <div>{description}</div>
         <div>{author}</div>
       </div>
       <div className="buttonDiv">
         <button onClick={handleViewKudos}>View items</button>
-        <button onClick={handleDeleteBoard}>Delete board</button>
+        <button onClick={() => handleDeleteBoard(KudoboardId)}>Delete board</button>
       </div>
     </div>
   );
