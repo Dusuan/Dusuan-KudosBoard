@@ -5,8 +5,12 @@ const prisma = new PrismaClient();
 
 // get all boards
 router.get("/", async (req, res) => {
-  const boards = await prisma.kudoboard.findMany();
-  res.json(boards);
+  try {
+    const boards = await prisma.kudoboard.findMany();
+    res.status(201).json(boards);
+  } catch (e) {
+    res.send("this happened" + e);
+  }
 });
 
 //
@@ -24,26 +28,25 @@ router.post("/post", async (req, res) => {
     });
     res.json(kudoboard);
   } catch (e) {
-    res.send("something wrong happened");
+    res.send("this happened" + e);
   }
 });
 
 //
-
-
 
 //
 
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
   try {
+    const deletedKudos = await prisma
     const deletedBoard = await prisma.kudoboard.delete({
       where: { KudoboardId: parseInt(id) },
     });
 
     res.json(deletedBoard);
   } catch (e) {
-    res.send("Could not delete/wasn't found");
+    res.send("Could not delete/wasn't found log: " + e);
   }
 });
 

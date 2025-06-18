@@ -41,7 +41,7 @@ router.put("/pin/:id", async (req, res) => {
     });
     res.send(pinnedKudo);
   } catch (e) {
-    res.send("something wrong happened" + e);
+    res.send("This went wrong :" + e);
   }
 });
 
@@ -57,7 +57,7 @@ router.put("/unpin/:id", async (req, res) => {
     });
     res.send(unpinnedKudo);
   } catch (e) {
-    res.send("something wrong happened" + e);
+    res.send("This went wrong :" + e);
   }
 });
 
@@ -79,7 +79,7 @@ router.post("/post/:id", async (req, res) => {
     });
     res.send(kudoCard);
   } catch (e) {
-    res.send("Something went wrong:  " + e);
+    res.send("This went wrong :" + e);
   }
 });
 
@@ -91,7 +91,7 @@ router.delete("/delete/:id", async (req, res) => {
     });
     res.send(deletedkudocard);
   } catch (e) {
-    res.send("Something went wrong ");
+    res.send("This went wrong :" + e);
   }
 });
 

@@ -3,15 +3,27 @@ import boards from "../data/data.js";
 import KudoBoard from "./KudoBoard.jsx";
 import NoBoards from "./NoBoards.jsx";
 import NewBoard from "./NewBoard.jsx"
-import { useEffect } from "react";
+import { useEffect , useState} from "react";
+
+import { fetchBoards, deleteBoard } from "../APIHandler.js";
+
 const Dashboard = ({IsFormOpen, setIsFormOpen}) => {
+
+  const [KudoBoards, setKudoBoards] = useState([])
+
   const handleOnFormOpen = ( ) => {
     setIsFormOpen(true)
   }
 
-  const getAllKudoBoards =() => {
-    // add get all here
-    console.log("Rendering all kudo boards")
+  const getAllKudoBoards = async () => {
+    const boards = await fetchBoards()
+    setKudoBoards(boards)
+  }
+
+  const deleteKudoBoard = async (id) =>{ 
+    const filteredBoards = KudoBoards.filter((board) => board.KudoboardId !== id)
+    setKudoBoards(filteredBoards)
+    deleteBoard(id)
   }
 
   useEffect(() => {
@@ -30,14 +42,14 @@ const Dashboard = ({IsFormOpen, setIsFormOpen}) => {
 
       {IsFormOpen  ? <NewBoard setIsFormOpen={setIsFormOpen}/> : <></>}
 
-      {boards.length < 1 ? (
+      {KudoBoards.length < 1 ? (
         <NoBoards />
       ) : (
         <div className="Boards">
-          {boards.map((board) => {
+          {KudoBoards.map((board) => {
             return (
-              <div key={board.id}>
-                <KudoBoard {...board} />
+              <div key={board.KudoboardId}>
+                <KudoBoard {...board} deleteKudoBoard={deleteKudoBoard} />
               </div>
             )
           })}

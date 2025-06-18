@@ -23,7 +23,7 @@ model kudoboard {
 
   //relation
 
-  kudocards kudocard[]
+  kudocards kudocard[] @relation()
 }
 
 model kudocard {
@@ -38,7 +38,7 @@ model kudocard {
   //relation
   kudocomments kudocomment[]
 
-  kudoboard   kudoboard @relation(fields: [kudoboardId], references: [KudoboardId])
+  kudoboard   kudoboard @relation(fields: [kudoboardId], references: [KudoboardId], onDelete: Cascade)
   kudoboardId Int
 }
 
@@ -49,6 +49,6 @@ model kudocomment {
 
   //relation
 
-  kudocard           kudocard? @relation(fields: [kudocardKudocardId], references: [KudocardId])
+  kudocard           kudocard? @relation(fields: [kudocardKudocardId], references: [KudocardId], onDelete: Cascade)
   kudocardKudocardId Int?
 }

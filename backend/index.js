@@ -5,7 +5,9 @@ const PORT = process.env.PORT || 3000
 const router = express.Router()
 const { PrismaClient } = require('./generated/prisma')
 const prisma = new PrismaClient()
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json());
 
 const kudoboards = require('./routes/kudoboards')
