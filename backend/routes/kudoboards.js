@@ -3,14 +3,13 @@ const router = express.Router();
 const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
 
-
 // get all boards
 router.get("/", async (req, res) => {
   const boards = await prisma.kudoboard.findMany();
   res.json(boards);
 });
 
-// 
+//
 
 router.post("/post", async (req, res) => {
   const { title, author, type, img } = req.body;
@@ -20,7 +19,7 @@ router.post("/post", async (req, res) => {
         title,
         author,
         type,
-        img : "https://picsum.photos/200/300",
+        img: "https://picsum.photos/200/300",
       },
     });
     res.json(kudoboard);
@@ -30,6 +29,8 @@ router.post("/post", async (req, res) => {
 });
 
 //
+
+
 
 //
 
