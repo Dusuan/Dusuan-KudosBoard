@@ -1,8 +1,10 @@
 import "./App.css";
-import NoBoards from "./components/NoBoards"
+import NoBoards from "./components/NoBoards";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Main from "./components/Main";
+import BoardPage from "./components/BoardPage";
+import NotFound from "./components/NotFound"
 function App() {
   const [IsFormOpen, setIsFormOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,10 +28,10 @@ function App() {
               handleSearchChange={handleSearchChange}
             />
           }
-        >
-        </Route>
-        <Route path="/smelse" element={<NoBoards/>}>
-        </Route>
+        ></Route>
+        <Route path="/smelse" element={<NoBoards />} />
+        <Route path="/board/:id" element={<BoardPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

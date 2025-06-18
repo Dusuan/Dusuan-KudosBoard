@@ -1,4 +1,5 @@
 import "./styles/KudoBoard.css";
+import { Link } from "react-router-dom";
 const KudoBoard = ({
   KudoboardId,
   title,
@@ -7,7 +8,7 @@ const KudoBoard = ({
   type,
   deleteKudoBoard,
 }) => {
-  const handleViewKudos = () => {
+  const handleViewKudos = (id) => {
     console.log(`Viewing Kudos! of: ${KudoboardId}`);
   };
   const handleDeleteBoard = (id) => {
@@ -31,8 +32,12 @@ const KudoBoard = ({
         <div>{author}</div>
       </div>
       <div className="buttonDiv">
-        <button onClick={handleViewKudos}>View items</button>
-        <button onClick={() => handleDeleteBoard(KudoboardId)}>Delete board</button>
+        <button>
+          <Link to={`/board/${KudoboardId}`}>View Items</Link>
+        </button>
+        <button onClick={() => handleDeleteBoard(KudoboardId)}>
+          Delete board
+        </button>
       </div>
     </div>
   );

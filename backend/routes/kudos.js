@@ -9,8 +9,7 @@ router.get("/:id", async (req, res) => {
     const kudocard = await prisma.kudocard.findUnique({
       where: { KudocardId: parseInt(id) },
     });
-
-    res.send(kudocards);
+    res.send(kudocard);
   } catch (e) {
     res.send("This went wrong :" + e);
   }

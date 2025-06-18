@@ -13,6 +13,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const board = await prisma.kudoboard.findUnique({
+      where: { KudoboardId: parseInt(id) },
+    });
+    res.send(board);
+  } catch (e) {
+    res.send("This went wrong :" + e);
+  }
+});
+
 //
 
 router.post("/post", async (req, res) => {
