@@ -1,0 +1,29 @@
+.KudoCard {
+  align-self: center;
+  width: 200px;
+  justify-content: center;
+  place-self: center;
+  background: white;
+  padding: 0.4em;
+  border-radius: 6px;
+  transition: all 0.3s;
+  border: 2px solid teal;
+}
+
+.card-image {
+  background-color: rgb(236, 236, 236);
+  width: 200px;
+  height: 300px;
+  border-radius: 6px 6px 0 0;
+  transition: all 0.3s;
+  border-radius: 6px;
+}
+
+.card-image:hover {
+  transform: scale(1.03);
+  transition: all 0.3s;
+}
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+}

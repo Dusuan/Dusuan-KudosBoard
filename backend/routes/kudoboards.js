@@ -13,10 +13,22 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const board = await prisma.kudoboard.findUnique({
+      where: { KudoboardId: parseInt(id) },
+    });
+    res.send(board);
+  } catch (e) {
+    res.send("This went wrong :" + e);
+  }
+});
+
 //
 
 router.post("/post", async (req, res) => {
-  const { title, author, type, img } = req.body;
+  const { title, author, type } = req.body;
   try {
     const kudoboard = await prisma.kudoboard.create({
       data: {
@@ -34,12 +46,11 @@ router.post("/post", async (req, res) => {
 
 //
 
-//
+
 
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const deletedKudos = await prisma
     const deletedBoard = await prisma.kudoboard.delete({
       where: { KudoboardId: parseInt(id) },
     });
