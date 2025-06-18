@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 //
 
 router.post("/post", async (req, res) => {
-  const { title, author, type, img } = req.body;
+  const { title, author, type } = req.body;
   try {
     const kudoboard = await prisma.kudoboard.create({
       data: {
@@ -34,12 +34,11 @@ router.post("/post", async (req, res) => {
 
 //
 
-//
+
 
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const deletedKudos = await prisma
     const deletedBoard = await prisma.kudoboard.delete({
       where: { KudoboardId: parseInt(id) },
     });

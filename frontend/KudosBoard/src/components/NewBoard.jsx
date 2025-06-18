@@ -1,7 +1,9 @@
 import "./styles/NewBoard.css";
 import { useState } from "react";
+import { postBoard } from "../APIHandler.js";
 
-const NewBoard = ({ setIsFormOpen }) => {
+
+const NewBoard = ({ setIsFormOpen, getAllKudoBoards}) => {
   const IsFormOpenHandler = () => {
     setIsFormOpen(false);
   };
@@ -13,13 +15,15 @@ const NewBoard = ({ setIsFormOpen }) => {
     type: 0,
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit =  async (e) => {
     // API post logic
     e.preventDefault();
     const formData = new FormData(e.target);
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key} : ${value}`);
-    }
+    await postBoard(formData)
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(`${key} : ${value}`);
+    // }
+    getAllKudoBoards()
   };
 
   return (
@@ -27,19 +31,20 @@ const NewBoard = ({ setIsFormOpen }) => {
       <div className="NewBoardContent">
         <div className="FormContainer">
           <form className="Form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Title"
+            ></input>
+            <input
+              type="text"
+              id="author"
+              name="author"
+              placeholder="Author"
+            ></input>
             <label>
-              Title <input type="text" id="title" name="title"></input>
-            </label>
-            <label>
-              Description
-              <input type="text" id="description" name="description"></input>
-            </label>
-            <label>
-              Author
-              <input type="text" id="author" name="author"></input>
-            </label>
-            <label>
-              Img <input type="file" id="imgfile" name="imgfile"></input>
+              {/* Img <input type="file" id="imgfile" name="imgfile"></input> */}
             </label>
             <select name="type" id="type" defaultValue={"Default"}>
               <option value="default">Default</option>

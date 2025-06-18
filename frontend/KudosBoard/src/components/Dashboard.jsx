@@ -5,7 +5,7 @@ import NoBoards from "./NoBoards.jsx";
 import NewBoard from "./NewBoard.jsx"
 import { useEffect , useState} from "react";
 
-import { fetchBoards, deleteBoard } from "../APIHandler.js";
+import { fetchBoards, deleteBoard} from "../APIHandler.js";
 
 const Dashboard = ({IsFormOpen, setIsFormOpen}) => {
 
@@ -40,7 +40,7 @@ const Dashboard = ({IsFormOpen, setIsFormOpen}) => {
         </button>
       </div>
 
-      {IsFormOpen  ? <NewBoard setIsFormOpen={setIsFormOpen}/> : <></>}
+      {IsFormOpen  ? <NewBoard setIsFormOpen={setIsFormOpen}  getAllKudoBoards={getAllKudoBoards} /> : <></>}
 
       {KudoBoards.length < 1 ? (
         <NoBoards />
