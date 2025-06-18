@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
-
 // get all boards
 router.get("/", async (req, res) => {
   try {
+    console.log(process.env.DATABASE_URL);
     const boards = await prisma.kudoboard.findMany();
     res.status(201).json(boards);
   } catch (e) {
