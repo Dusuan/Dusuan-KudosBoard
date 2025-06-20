@@ -8,9 +8,6 @@ const KudoBoard = ({
   type,
   deleteKudoBoard,
 }) => {
-  const handleViewKudos = (id) => {
-    console.log(`Viewing Kudos! of: ${KudoboardId}`);
-  };
   const handleDeleteBoard = (id) => {
     console.log(`Deleting card with id: ${KudoboardId}`);
     deleteKudoBoard(id);

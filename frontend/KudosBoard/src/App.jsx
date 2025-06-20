@@ -7,7 +7,7 @@ import BoardPage from "./components/BoardPage";
 import NotFound from "./components/NotFound"
 import { fetchBoards } from "./APIHandler";
 function App() {
-  const [IsFormOpen, setIsFormOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const [darkTheme, setDarkTheme] = useState(false)
  
   return (
@@ -22,7 +22,7 @@ function App() {
             <Main
               darkTheme={darkTheme}
               setDarkTheme={setDarkTheme}
-              IsFormOpen={IsFormOpen}
+              isFormOpen={isFormOpen}
               setIsFormOpen={setIsFormOpen}
             />
           }

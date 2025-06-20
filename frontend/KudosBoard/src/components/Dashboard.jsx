@@ -7,7 +7,7 @@ import { useEffect , useState} from "react";
 
 import {deleteBoard} from "../APIHandler.js";
 
-const Dashboard = ({IsFormOpen, setIsFormOpen, KudoBoards, setKudoBoards, getAllKudoBoards}) => {
+const Dashboard = ({isFormOpen, setIsFormOpen, KudoBoards, setKudoBoards, getAllKudoBoards}) => {
 
 
   const handleOnFormOpen = ( ) => {
@@ -35,7 +35,7 @@ const Dashboard = ({IsFormOpen, setIsFormOpen, KudoBoards, setKudoBoards, getAll
         </button>
       </div>
 
-      {IsFormOpen  ? <NewBoard setIsFormOpen={setIsFormOpen}  getAllKudoBoards={getAllKudoBoards} /> : <></>}
+      {isFormOpen  && <NewBoard setIsFormOpen={setIsFormOpen}  getAllKudoBoards={getAllKudoBoards} />}
 
       {KudoBoards.length < 1 ? (
         <NoBoards />

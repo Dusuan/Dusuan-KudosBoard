@@ -6,7 +6,7 @@ import { fetchBoards} from "../APIHandler.js";
 
 import { useState } from "react";
 const Main = ({
-  IsFormOpen,
+  isFormOpen,
   setIsFormOpen,
   setDarkTheme,
   darkTheme
@@ -26,7 +26,7 @@ const Main = ({
         KudoBoards={KudoBoards}
       />
       <Dashboard
-        IsFormOpen={IsFormOpen}
+        isFormOpen={isFormOpen}
         KudoBoards={KudoBoards}
         getAllKudoBoards={getAllKudoBoards}
         setKudoBoards={setKudoBoards}
