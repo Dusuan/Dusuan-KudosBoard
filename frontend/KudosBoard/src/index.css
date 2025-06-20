@@ -20,10 +20,18 @@ body {
   a{
     color: var(--accents-color);
   }
+  h1{
+    color: var(--accents-color)
+  }
+  input{
+    background-color: var(--background-color);
+    color: var(--accents-color)
+  }
+
 }
 
 [data-theme="dark"] {
-  --background-color: #9a9b9f;
+  --background-color: #343434;
   --foreground-color: rgb(31, 31, 31);
   --accents-color: rgb(255, 255, 255);
   --buttons-color: black;

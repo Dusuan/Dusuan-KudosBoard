@@ -37,7 +37,7 @@ router.post("/post", async (req, res) => {
         title,
         author,
         type,
-        img: "https://picsum.photos/200/300",
+        img: `https://picsum.photos/200/300/?random=${Math.random()}`,
         dateCreated: date,
       },
     });

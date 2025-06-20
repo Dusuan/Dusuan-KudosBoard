@@ -13,23 +13,23 @@ const KudoCard = ({
   handleDeleteKudo,
   handleOpenCommentModal,
   setKudoInfo,
-  getAllKudoCards
+  getAllKudoCards,
 }) => {
   const [UpVotes, setUpvotes] = useState(upvotes);
-  const [localPin, setLocalPin] = useState(isPinned)
+  const [localPin, setLocalPin] = useState(isPinned);
   const handleDeleteCard = (id) => {
     console.log(`kudo with id: ${id} deleted`);
     handleDeleteKudo(id);
   };
 
   const handleOnPin = async (id) => {
-    setLocalPin((prev) => !prev)
+    setLocalPin((prev) => !prev);
     if (isPinned) {
       await unPinKudo(id);
     } else {
-     await  pinKudo(id);
+      await pinKudo(id);
     }
-    getAllKudoCards()
+    getAllKudoCards();
   };
 
   const handleSetKudoInfo = () => [
@@ -61,14 +61,20 @@ const KudoCard = ({
         />
       </div>
       <div>
-        <div>{KudocardId}</div>
         <div>
           <p>{title}</p>
         </div>
-        <div>{creator}</div>
+        <div>
+          <p>{creator}</p>
+        </div>
       </div>
       <div className="buttonDiv">
-        <button onClick={() => handleOnPin(KudocardId)} style={{borderColor : localPin ? 'gold' : 'teal' , borderWidth : 2}}>{localPin ? "Unpin" : "Pin"}</button>
+        <button
+          onClick={() => handleOnPin(KudocardId)}
+          style={{ borderColor: localPin ? "gold" : "teal", borderWidth: 2 }}
+        >
+          {localPin ? "Unpin" : "Pin"}
+        </button>
         <button onClick={handleOnUpvote}>Upvote : {UpVotes}</button>
         <button onClick={() => handleDeleteCard(KudocardId)}>
           Delete card
