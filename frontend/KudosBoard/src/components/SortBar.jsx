@@ -1,27 +1,16 @@
 const SortBar = () => {
-  const sortAll = () => {
-    console.log("Sorting by all");
-  };
-  const sortRecent = () => {
-    console.log("Sorting by recent");
-  };
-  const sortCelebration = () => {
-    console.log("Sorting by Celebration");
-  };
-  const sortThankYou = () => {
-    console.log("Sorting by Thank you");
-  };
-  const sortInspiration = () => {
-    console.log("Sorting by Inspiration");
-  };
+  const sort = (sortType) => {
 
+
+  };
+  
   return (
     <div>
-      <button onClick={sortAll}>All</button>
-      <button onClick={sortRecent}>Recent</button>
-      <button onClick={sortCelebration}>Celebration</button>
-      <button onClick={sortThankYou}>Thank you</button>
-      <button onClick={sortInspiration}>Inspiration</button>
+      <button onClick={sort("all")}>All</button>
+      <button onClick={sort("recent")}>Recent</button>
+      <button onClick={sort("celebration")}>Celebration</button>
+      <button onClick={sort("thankyou")}>Thank you</button>
+      <button onClick={sort("inspiration")}>Inspiration</button>
     </div>
   );
 };

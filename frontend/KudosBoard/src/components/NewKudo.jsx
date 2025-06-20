@@ -1,12 +1,20 @@
 import "./styles/NewKudo.css";
 import { useState } from "react";
-import { postKudos } from "../APIHandler";
+import { postKudos, getGifs } from "../APIHandler";
 
 const NewKudo = ({ setNewKudoModal, getAllKudoCards, id }) => {
+  const [gifVal, setGifVal] = useState("");
+  const [selectedGif, setSelectedGif] = useState("")
+  const [gifs, setGifs] = useState([]);
+
+  const handleSelectGif = (gif) => {
+    setSelectedGif(gif)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    await postKudos(formData, id);
+    await postKudos(formData, selectedGif, id);
     // for (let [key, value] of formData.entries()) {
     //   console.log(`${key} : ${value}`);
     // }
@@ -15,6 +23,12 @@ const NewKudo = ({ setNewKudoModal, getAllKudoCards, id }) => {
 
   const setCloseKudoModal = () => {
     setNewKudoModal(false);
+  };
+
+  const handleGetGifs = async (query) => {
+    const gifs = await getGifs(query);
+    console.log(gifs);
+    setGifs(gifs.data);
   };
 
   return (
@@ -44,14 +58,33 @@ const NewKudo = ({ setNewKudoModal, getAllKudoCards, id }) => {
               type="text"
               id="gifserach"
               name="gifsearch"
+              value={gifVal}
+              onChange={(e) => setGifVal(e.target.value)}
               placeholder="Search Gifs"
             ></input>
-            <button>Search</button>
+            <button type="button" onClick={() => handleGetGifs(gifVal)}>
+              Search
+            </button>
+            <div className="gifs">
+              {gifs.map((gif) => {
+                return (
+                  <img
+                    onClick={() => handleSelectGif(gif.images.original.url)}
+                    height={100}
+                    width={100}
+                    key={gif.url}
+                    src={gif.images.original.url}
+                  />
+                );
+              })}
+            </div>
             <input
               type="text"
               id="gifresult"
               name="gifresult"
               placeholder="Enter Gif URL"
+              value={selectedGif}
+              onChange={(e) => setSelectedGif(e.target.value)}
             ></input>
             <label>
               {/* Img <input type="file" id="imgfile" name="imgfile"></input> */}

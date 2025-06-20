@@ -12,6 +12,7 @@ const DELETEoptions = {
 };
 
 const url = import.meta.env.VITE_URL;
+const GKEY = import.meta.env.VITE_GIPHY;
 
 const fetchBoards = async () => {
   const data = await fetch(`${url}/kudoboards/`)
@@ -100,7 +101,7 @@ const deleteKudos = async (id) => {
     });
 };
 
-const postKudos = async (data, id) => {
+const postKudos = async (data, gifVal, id) => {
   await fetch(`${url}/kudos/post/${id}`, {
     method: "POST",
     headers: {
@@ -109,12 +110,29 @@ const postKudos = async (data, id) => {
     body: JSON.stringify({
       title: data.get("title"),
       creator: data.get("owner"),
-      media: data.get("gifresult"),
+      media: gifVal,
       description: data.get("description"),
       upvotes: 0,
       isPinned: false,
     }),
   });
+};
+
+const getGifs = async (query) => {
+  const data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GKEY}&q=${query}&offset=0&limit=6`, GEToptions)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Http error, status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching boards:", error);
+    });
+  return data;
 };
 
 export {
@@ -124,4 +142,5 @@ export {
   fetchKudos,
   deleteKudos,
   postKudos,
+  getGifs,
 };
