@@ -32,6 +32,24 @@ const fetchBoards = async () => {
   return data;
 };
 
+const fetchBoardById = async (id) => {
+  const data = await fetch(`${url}/kudoboards/${id}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Http error, status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching boards:", error);
+    });
+
+  return data;
+};
+
 const deleteBoard = async (id) => {
   console.log("executed");
   await fetch(`${url}/kudoboards/delete/${id}`, DELETEoptions)
@@ -181,6 +199,7 @@ const fetchComments = async (id) => {
 
 export {
   fetchBoards,
+  fetchBoardById,
   deleteBoard,
   postBoard,
   fetchKudos,

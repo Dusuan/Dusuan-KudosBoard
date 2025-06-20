@@ -2,37 +2,40 @@ import "./styles/BoardPage.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import KudoCard from "./KudoCard";
-import CommentModal from './CommentModal'
+import CommentModal from "./CommentModal";
 import { useParams } from "react-router-dom";
-import { fetchKudos } from "../APIHandler";
+import { fetchKudos, fetchBoardById } from "../APIHandler";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteKudos } from "../APIHandler";
-
 
 import NewKudo from "./NewKudo";
 
 const BoardPage = () => {
   const [NewKudoModal, setNewKudoModal] = useState(false);
-  const [openCommentModal, setOpenCommentModal] = useState(false)
+  const [openCommentModal, setOpenCommentModal] = useState(false);
   const { id } = useParams();
   const [kudos, setKudos] = useState([]);
-  const [kudoInfo, setKudoInfo] = useState({})
+  const [boardInfo, setBoardInfo] = useState({});
+
+  const [kudoInfo, setKudoInfo] = useState({});
 
   const handleOpenKudoModal = () => {
-    setNewKudoModal(true)
-  }
+    setNewKudoModal(true);
+  };
   const handleOpenCommentModal = () => {
-    setOpenCommentModal(true)
-  }
+    setOpenCommentModal(true);
+  };
 
-
+  const getBoardInfo = async () => {
+    const board = await fetchBoardById(id);
+    setBoardInfo(board);
+  };
 
   const getAllKudoCards = async () => {
     const kudos = await fetchKudos(id);
     setKudos(kudos);
   };
-
 
   const handleDeleteKudo = async (id) => {
     // const filteredBoards = KudoBoards.filter((board) => board.KudoboardId !== id)
@@ -46,12 +49,13 @@ const BoardPage = () => {
 
   useEffect(() => {
     getAllKudoCards();
+    getBoardInfo();
   }, []);
 
   return (
     <div className="BoardPage">
       <Header />
-
+      <h1>{boardInfo.title}</h1>
       <div>
         <button>
           <Link to="/">Get back</Link>
@@ -62,8 +66,20 @@ const BoardPage = () => {
         <button onClick={handleOpenKudoModal}>Create new card</button>
       </div>
 
-      {NewKudoModal ? <NewKudo setNewKudoModal={setNewKudoModal} getAllKudoCards={getAllKudoCards} id={id}/>  : <></>}
-      {openCommentModal ? <CommentModal {...kudoInfo} setOpenCommentModal={setOpenCommentModal}/> : <></>}
+      {NewKudoModal ? (
+        <NewKudo
+          setNewKudoModal={setNewKudoModal}
+          getAllKudoCards={getAllKudoCards}
+          id={id}
+        />
+      ) : (
+        <></>
+      )}
+      {openCommentModal ? (
+        <CommentModal {...kudoInfo} setOpenCommentModal={setOpenCommentModal} />
+      ) : (
+        <></>
+      )}
 
       {kudos == null || kudos.length < 1 ? (
         <h1>No cards available</h1>
@@ -72,7 +88,12 @@ const BoardPage = () => {
           {kudos.map((kudo) => {
             return (
               <div key={kudo.KudocardId}>
-                <KudoCard {...kudo} setKudoInfo={setKudoInfo} handleOpenCommentModal={handleOpenCommentModal} handleDeleteKudo={handleDeleteKudo} />
+                <KudoCard
+                  {...kudo}
+                  setKudoInfo={setKudoInfo}
+                  handleOpenCommentModal={handleOpenCommentModal}
+                  handleDeleteKudo={handleDeleteKudo}
+                />
               </div>
             );
           })}

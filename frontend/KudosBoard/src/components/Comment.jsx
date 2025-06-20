@@ -6,7 +6,7 @@ const Comment = ({ username, text }) => {
        
       </div>
       <div>
-        <div>{username ?  username : "Anonymous" }</div>
+        <div><strong>{username ?  username : "Anonymous" }</strong></div>
         <div>{text}</div>
       </div>
     </div>
