@@ -2,15 +2,38 @@ import Dashboard from "./Dashboard";
 import Header from "./Header";
 import Footer from "./Footer";
 import Banner from "./Banner";
-const Main = ({searchQuery, handleSearchChange, IsFormOpen, setIsFormOpen}) => {
+import { fetchBoards} from "../APIHandler.js";
+
+import { useState } from "react";
+const Main = ({
+  searchQuery,
+  handleSearchChange,
+  IsFormOpen,
+  setIsFormOpen,
+}) => {
+  const [KudoBoards, setKudoBoards] = useState([]);
+  const getAllKudoBoards = async () => {
+    const boards = await fetchBoards();
+    setKudoBoards(boards);
+  };
+
   return (
     <>
       <Header />
       <Banner
+        getAllKudoBoards={getAllKudoBoards}
+        setKudoBoards={setKudoBoards}
+        KudoBoards={KudoBoards}
         searchQuery={searchQuery}
         handleSearchChange={handleSearchChange}
       />
-      <Dashboard IsFormOpen={IsFormOpen} setIsFormOpen={setIsFormOpen} />
+      <Dashboard
+        IsFormOpen={IsFormOpen}
+        KudoBoards={KudoBoards}
+        getAllKudoBoards={getAllKudoBoards}
+        setKudoBoards={setKudoBoards}
+        setIsFormOpen={setIsFormOpen}
+      />
       <Footer />
     </>
   );

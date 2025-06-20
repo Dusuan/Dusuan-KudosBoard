@@ -29,7 +29,7 @@ const KudoBoard = ({
         <div>
           <p>{title}</p>
         </div>
-        <div>{author}</div>
+        <div>{type}</div>
       </div>
       <div className="buttonDiv">
         <button>

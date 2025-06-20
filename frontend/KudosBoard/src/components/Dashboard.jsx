@@ -5,21 +5,16 @@ import NoBoards from "./NoBoards.jsx";
 import NewBoard from "./NewBoard.jsx"
 import { useEffect , useState} from "react";
 
-import { fetchBoards, deleteBoard} from "../APIHandler.js";
+import {deleteBoard} from "../APIHandler.js";
 
-const Dashboard = ({IsFormOpen, setIsFormOpen}) => {
+const Dashboard = ({IsFormOpen, setIsFormOpen, KudoBoards, setKudoBoards, getAllKudoBoards}) => {
 
-  const [KudoBoards, setKudoBoards] = useState([])
 
   const handleOnFormOpen = ( ) => {
     setIsFormOpen(true)
   }
 
-  const getAllKudoBoards = async () => {
-    const boards = await fetchBoards()
-    setKudoBoards(boards)
-  }
-
+  
   const deleteKudoBoard = async (id) =>{ 
     const filteredBoards = KudoBoards.filter((board) => board.KudoboardId !== id)
     setKudoBoards(filteredBoards)
