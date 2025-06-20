@@ -1,12 +1,30 @@
-import './styles/SearchBar.css'
+import "./styles/SearchBar.css";
 
-const SearchBar = ({ handleSearchChange, searchQuery }) => {
-  const handleSearch = () =>{
+const SearchBar = ({
+  handleSearchChange,
+  searchQuery,
+  setSearchQuery,
+  setKudoBoards,
+  KudoBoards,
+  getAllKudoBoards,
+}) => {
+  const handleSearch = () => {
+    filter();
+  };
 
-  }
+  const filter = () => {
+    const query = searchQuery.toLowerCase().replace(/\s+/g, "");
+    const FilteredBoards = KudoBoards.filter((Board) => {
+      const title = Board.title.toLowerCase();
+      return title.replace(/\s+/g, "").includes(query);
+    });
+    setKudoBoards(FilteredBoards);
+  };
+
   const handleClear = () => {
-
-  }
+    setSearchQuery("");
+    getAllKudoBoards();
+  };
   return (
     <div>
       <input
@@ -17,12 +35,16 @@ const SearchBar = ({ handleSearchChange, searchQuery }) => {
         onChange={handleSearchChange}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            console.log(`Searched for ${searchQuery} `);
+            handleSearch()
           }
         }}
       ></input>
-      <button className="searchBtn" onClick={handleSearch}>Search</button>
-      <button className= "searchBtn"onClick={handleClear}>Clear</button>
+      <button className="searchBtn" onClick={handleSearch}>
+        Search
+      </button>
+      <button className="searchBtn" onClick={handleClear}>
+        Clear
+      </button>
     </div>
   );
 };

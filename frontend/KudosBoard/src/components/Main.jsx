@@ -10,6 +10,7 @@ const Main = ({
   handleSearchChange,
   IsFormOpen,
   setIsFormOpen,
+  setSearchQuery
 }) => {
   const [KudoBoards, setKudoBoards] = useState([]);
   const getAllKudoBoards = async () => {
@@ -21,6 +22,7 @@ const Main = ({
     <>
       <Header />
       <Banner
+      setSearchQuery={setSearchQuery}
         getAllKudoBoards={getAllKudoBoards}
         setKudoBoards={setKudoBoards}
         KudoBoards={KudoBoards}
