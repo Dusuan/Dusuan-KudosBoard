@@ -34,18 +34,18 @@ const BoardPage = ({ darkTheme, setDarkTheme }) => {
 
   const getAllKudoCards = async () => {
     const kudos = await fetchKudos(id);
-    const sortedPin = PinSort(kudos)
+    const sortedPin = PinSort(kudos);
     setKudos(sortedPin);
   };
 
   const PinSort = (kudos) => {
-    kudos.sort(function (a,b) {
-      const one = new Date(a.datePinned)
-      const two = new Date(b.datePinned)
-      return two - one; 
-    })
+    kudos.sort(function (a, b) {
+      const one = new Date(a.datePinned);
+      const two = new Date(b.datePinned);
+      return two - one;
+    });
     return kudos;
-  }
+  };
 
   const handleDeleteKudo = async (id) => {
     // const filteredBoards = KudoBoards.filter((board) => board.KudoboardId !== id)
@@ -76,19 +76,15 @@ const BoardPage = ({ darkTheme, setDarkTheme }) => {
         <button onClick={handleOpenKudoModal}>Create new card</button>
       </div>
 
-      {NewKudoModal ? (
+      {NewKudoModal && (
         <NewKudo
           setNewKudoModal={setNewKudoModal}
           getAllKudoCards={getAllKudoCards}
           id={id}
         />
-      ) : (
-        <></>
       )}
-      {openCommentModal ? (
+      {openCommentModal && (
         <CommentModal {...kudoInfo} setOpenCommentModal={setOpenCommentModal} />
-      ) : (
-        <></>
       )}
 
       {kudos == null || kudos.length < 1 ? (
