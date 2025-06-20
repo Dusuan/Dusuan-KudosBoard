@@ -33,7 +33,7 @@ const NewBoard = ({ setIsFormOpen, getAllKudoBoards }) => {
               type="text"
               id="author"
               name="author"
-              placeholder="Author"
+              placeholder="Author (Optional) "
             ></input>
             <label>
               {/* Img <input type="file" id="imgfile" name="imgfile"></input> */}

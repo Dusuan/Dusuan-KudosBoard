@@ -52,7 +52,7 @@ const NewKudo = ({ setNewKudoModal, getAllKudoCards, id }) => {
               type="text"
               id="owner"
               name="owner"
-              placeholder="Owner"
+              placeholder="Owner (Optional)"
             ></input>
             <input
               type="text"
