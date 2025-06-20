@@ -5,12 +5,10 @@ import { Routes, Route } from "react-router-dom";
 import Main from "./components/Main";
 import BoardPage from "./components/BoardPage";
 import NotFound from "./components/NotFound"
+import { fetchBoards } from "./APIHandler";
 function App() {
   const [IsFormOpen, setIsFormOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
+ 
   return (
     <div
       className="App"
@@ -23,9 +21,6 @@ function App() {
             <Main
               IsFormOpen={IsFormOpen}
               setIsFormOpen={setIsFormOpen}
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              handleSearchChange={handleSearchChange}
             />
           }
         ></Route>

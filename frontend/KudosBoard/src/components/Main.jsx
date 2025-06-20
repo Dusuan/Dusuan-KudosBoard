@@ -6,11 +6,8 @@ import { fetchBoards} from "../APIHandler.js";
 
 import { useState } from "react";
 const Main = ({
-  searchQuery,
-  handleSearchChange,
   IsFormOpen,
   setIsFormOpen,
-  setSearchQuery
 }) => {
   const [KudoBoards, setKudoBoards] = useState([]);
   const getAllKudoBoards = async () => {
@@ -22,12 +19,9 @@ const Main = ({
     <>
       <Header />
       <Banner
-      setSearchQuery={setSearchQuery}
         getAllKudoBoards={getAllKudoBoards}
         setKudoBoards={setKudoBoards}
         KudoBoards={KudoBoards}
-        searchQuery={searchQuery}
-        handleSearchChange={handleSearchChange}
       />
       <Dashboard
         IsFormOpen={IsFormOpen}

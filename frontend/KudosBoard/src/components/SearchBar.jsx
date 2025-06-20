@@ -1,15 +1,19 @@
 import "./styles/SearchBar.css";
+import { useState } from "react";
 
-const SearchBar = ({
-  handleSearchChange,
-  searchQuery,
-  setSearchQuery,
-  setKudoBoards,
-  KudoBoards,
-  getAllKudoBoards,
-}) => {
-  const handleSearch = () => {
+const SearchBar = ({ setKudoBoards, KudoBoards, getAllKudoBoards }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = async () => {
+    await getAllKudoBoards();
     filter();
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    if (event.target.value < 1) {
+      getAllKudoBoards();
+    }
   };
 
   const filter = () => {
@@ -35,7 +39,7 @@ const SearchBar = ({
         onChange={handleSearchChange}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            handleSearch()
+            handleSearch();
           }
         }}
       ></input>

@@ -1,16 +1,13 @@
 import SearchBar from "./SearchBar";
 import SortBar from "./SortBar";
 
-const Banner = ({ handleSearchChange, searchQuery, getAllKudoBoards, setKudoBoards, KudoBoards,setSearchQuery }) => {
+const Banner = ({ getAllKudoBoards, setKudoBoards, KudoBoards }) => {
   return (
     <div>
       <SearchBar
-      getAllKudoBoards={getAllKudoBoards}
-      KudoBoards={KudoBoards}
-      setKudoBoards={setKudoBoards}
-      setSearchQuery={setSearchQuery}
-        searchQuery={searchQuery}
-        handleSearchChange={handleSearchChange}
+        getAllKudoBoards={getAllKudoBoards}
+        KudoBoards={KudoBoards}
+        setKudoBoards={setKudoBoards}
       />
       <SortBar
         getAllKudoBoards={getAllKudoBoards}
