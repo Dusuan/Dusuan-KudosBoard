@@ -11,7 +11,7 @@ const DELETEoptions = {
   },
 };
 
-const url = import.meta.env.VITE_URL
+const url = import.meta.env.VITE_URL;
 
 const fetchBoards = async () => {
   const data = await fetch(`${url}/kudoboards/`)
@@ -100,4 +100,28 @@ const deleteKudos = async (id) => {
     });
 };
 
-export { fetchBoards, deleteBoard, postBoard, fetchKudos, deleteKudos };
+const postKudos = async (data, id) => {
+  await fetch(`${url}/kudos/post/${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: data.get("title"),
+      creator: data.get("owner"),
+      media: data.get("gifresult"),
+      description: data.get("description"),
+      upvotes: 0,
+      isPinned: false,
+    }),
+  });
+};
+
+export {
+  fetchBoards,
+  deleteBoard,
+  postBoard,
+  fetchKudos,
+  deleteKudos,
+  postKudos,
+};
