@@ -119,7 +119,10 @@ const postKudos = async (data, gifVal, id) => {
 };
 
 const getGifs = async (query) => {
-  const data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GKEY}&q=${query}&offset=0&limit=6`, GEToptions)
+  const data = await fetch(
+    `https://api.giphy.com/v1/gifs/search?api_key=${GKEY}&q=${query}&offset=0&limit=6`,
+    GEToptions
+  )
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Http error, status: ${response.status}`);
@@ -135,6 +138,16 @@ const getGifs = async (query) => {
   return data;
 };
 
+const upVote = async (votes, id) => {
+  await fetch(`${url}/kudos/upvote/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ upvotes: votes }),
+  });
+};
+
 export {
   fetchBoards,
   deleteBoard,
@@ -143,4 +156,5 @@ export {
   deleteKudos,
   postKudos,
   getGifs,
+  upVote,
 };

@@ -60,7 +60,6 @@ router.put("/unpin/:id", async (req, res) => {
   }
 });
 
-
 router.post("/post/:id", async (req, res) => {
   const { title, creator, media, description } = req.body;
   const { id } = req.params;
@@ -77,6 +76,22 @@ router.post("/post/:id", async (req, res) => {
       },
     });
     res.send(kudoCard);
+  } catch (e) {
+    res.send("This went wrong :" + e);
+  }
+});
+
+router.put("/upvote/:id", async (req, res) => {
+  const { id } = req.params;
+  const { upvotes } = req.body;
+  try {
+    const upvote = await prisma.kudocard.update({
+      where: { KudocardId: parseInt(id) },
+      data: {
+        upvotes: upvotes,
+      },
+    });
+    res.send(upvote);
   } catch (e) {
     res.send("This went wrong :" + e);
   }

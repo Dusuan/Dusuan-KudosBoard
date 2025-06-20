@@ -1,4 +1,6 @@
 import "./styles/KudoCard.css";
+import { useState } from 'react'
+import { upVote } from "../APIHandler";
 const KudoCard = ({
   KudocardId,
   title,
@@ -8,12 +10,26 @@ const KudoCard = ({
   media,
   isPinned,
   datePinned,
-  handleDeleteKudo
+  handleDeleteKudo,
+
 }) => {
+
+  const [UpVotes, setUpvotes] = useState(upvotes)
+
   const handleDeleteCard = (id) => {
     console.log(`kudo with id: ${id} deleted`)
     handleDeleteKudo(id)
   };
+
+  const handleOnUpvote = () => {
+    const more = UpVotes + 1;
+    setUpvotes(more)
+    upVote(more, KudocardId)
+  }
+
+  // useEffect(() => {
+
+  // }, [])
 
   return (
     <div className="KudoCard">
@@ -33,7 +49,7 @@ const KudoCard = ({
         <div>{creator}</div>
       </div>
       <div className="buttonDiv">
-        <button>Upvote : {upvotes}</button>
+        <button onClick={handleOnUpvote}>Upvote : {UpVotes}</button>
         <button onClick={() => handleDeleteCard(KudocardId)}>
           Delete card
         </button>
