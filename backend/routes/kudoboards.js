@@ -29,13 +29,16 @@ router.get("/:id", async (req, res) => {
 
 router.post("/post", async (req, res) => {
   const { title, author, type } = req.body;
+  const date = new Date();
+
   try {
     const kudoboard = await prisma.kudoboard.create({
       data: {
         title,
         author,
         type,
-        img: "https://picsum.photos/200/300",
+        img: `https://picsum.photos/200/300/?random=${Math.random()}`,
+        dateCreated: date,
       },
     });
     res.json(kudoboard);
@@ -45,8 +48,6 @@ router.post("/post", async (req, res) => {
 });
 
 //
-
-
 
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;

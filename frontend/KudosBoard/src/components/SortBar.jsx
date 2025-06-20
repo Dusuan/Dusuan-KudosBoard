@@ -1,28 +1,35 @@
-const SortBar = () => {
-  const sortAll = () => {
-    console.log("Sorting by all");
-  };
-  const sortRecent = () => {
-    console.log("Sorting by recent");
-  };
-  const sortCelebration = () => {
-    console.log("Sorting by Celebration");
-  };
-  const sortThankYou = () => {
-    console.log("Sorting by Thank you");
-  };
-  const sortInspiration = () => {
-    console.log("Sorting by Inspiration");
+import { fetchBoards } from "../APIHandler.js";
+
+const SortBar = ({getAllKudoBoards, setKudoBoards, KudoBoards}) => {
+  const sort = async (sortType) => {
+    let filteredBoards = await fetchBoards();
+
+    if (sortType === "recent") {
+      filteredBoards.sort(function (a, b) {
+        const one = new Date(a.dateCreated)
+        const two = new Date(b.dateCreated)
+        return two - one;
+      });
+      filteredBoards = filteredBoards.slice(0, 6)
+    } else if (sortType === "celebration") {
+      filteredBoards = filteredBoards.filter((board) => board.type === "celebration");
+    } else if (sortType === "thankyou") {
+      filteredBoards = filteredBoards.filter((board) => board.type === "thankyou");
+    } else if (sortType === "inspiration") {
+      filteredBoards = filteredBoards.filter((board) => board.type === "inspiration");
+    }
+    setKudoBoards(filteredBoards);
   };
 
   return (
     <div>
-      <button onClick={sortAll}>All</button>
-      <button onClick={sortRecent}>Recent</button>
-      <button onClick={sortCelebration}>Celebration</button>
-      <button onClick={sortThankYou}>Thank you</button>
-      <button onClick={sortInspiration}>Inspiration</button>
+      <button onClick={() => sort("all")}>All</button>
+      <button onClick={() => sort("recent")}>Recent</button>
+      <button onClick={() => sort("celebration")}>Celebration</button>
+      <button onClick={() => sort("thankyou")}>Thank you</button>
+      <button onClick={() => sort("inspiration")}>Inspiration</button>
     </div>
   );
 };
+
 export default SortBar;

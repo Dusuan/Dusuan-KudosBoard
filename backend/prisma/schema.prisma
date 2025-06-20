@@ -15,11 +15,12 @@ datasource db {
 }
 
 model kudoboard {
-  KudoboardId Int     @id @default(autoincrement())
+  KudoboardId Int      @id @default(autoincrement())
   title       String
   author      String
   type        String
   img         String?
+  dateCreated DateTime?
 
   //relation
 
@@ -27,14 +28,14 @@ model kudoboard {
 }
 
 model kudocard {
-  KudocardId  Int     @id @default(autoincrement())
-  description String
-  title       String
-  creator     String
-  media       String
-  upvotes     Int
-  isPinned    Boolean
-  datePinned  DateTime?
+  KudocardId   Int           @id @default(autoincrement())
+  description  String
+  title        String
+  creator      String
+  media        String
+  upvotes      Int
+  isPinned     Boolean
+  datePinned   DateTime?
   //relation
   kudocomments kudocomment[]
 

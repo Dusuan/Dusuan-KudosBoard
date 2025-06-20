@@ -1,12 +1,34 @@
-import './styles/SearchBar.css'
+import "./styles/SearchBar.css";
+import { useState } from "react";
 
-const SearchBar = ({ handleSearchChange, searchQuery }) => {
-  const handleSearch = () =>{
+const SearchBar = ({ setKudoBoards, KudoBoards, getAllKudoBoards }) => {
+  const [searchQuery, setSearchQuery] = useState("");
 
-  }
+  const handleSearch = async () => {
+    await getAllKudoBoards();
+    filter();
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    if (event.target.value < 1) {
+      getAllKudoBoards();
+    }
+  };
+
+  const filter = () => {
+    const query = searchQuery.toLowerCase().replace(/\s+/g, "");
+    const FilteredBoards = KudoBoards.filter((Board) => {
+      const title = Board.title.toLowerCase();
+      return title.replace(/\s+/g, "").includes(query);
+    });
+    setKudoBoards(FilteredBoards);
+  };
+
   const handleClear = () => {
-
-  }
+    setSearchQuery("");
+    getAllKudoBoards();
+  };
   return (
     <div>
       <input
@@ -17,12 +39,16 @@ const SearchBar = ({ handleSearchChange, searchQuery }) => {
         onChange={handleSearchChange}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            console.log(`Searched for ${searchQuery} `);
+            handleSearch();
           }
         }}
       ></input>
-      <button className="searchBtn" onClick={handleSearch}>Search</button>
-      <button className= "searchBtn"onClick={handleClear}>Clear</button>
+      <button className="searchBtn" onClick={handleSearch}>
+        Search
+      </button>
+      <button className="searchBtn" onClick={handleClear}>
+        Clear
+      </button>
     </div>
   );
 };

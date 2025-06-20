@@ -1,9 +1,12 @@
 .Dashboard {
   padding-top: 20px;
+  padding-bottom: 100px;
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   gap: 40px;
   flex: 1;
+  color: var(--accents-color)
 }
 .Boards {
   display: grid;

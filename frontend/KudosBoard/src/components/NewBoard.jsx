@@ -2,20 +2,20 @@ import "./styles/NewBoard.css";
 import { useState } from "react";
 import { postBoard } from "../APIHandler.js";
 
-const NewBoard = ({ setIsFormOpen, getAllKudoBoards}) => {
+const NewBoard = ({ setIsFormOpen, getAllKudoBoards }) => {
   const IsFormOpenHandler = () => {
     setIsFormOpen(false);
   };
 
-  const handleSubmit =  async (e) => {
+  const handleSubmit = async (e) => {
     // API post logic
     e.preventDefault();
     const formData = new FormData(e.target);
-    await postBoard(formData)
+    await postBoard(formData);
     // for (let [key, value] of formData.entries()) {
     //   console.log(`${key} : ${value}`);
     // }
-    getAllKudoBoards()
+    getAllKudoBoards();
   };
 
   return (
@@ -24,6 +24,7 @@ const NewBoard = ({ setIsFormOpen, getAllKudoBoards}) => {
         <div className="FormContainer">
           <form className="Form" onSubmit={handleSubmit}>
             <input
+              required={true}
               type="text"
               id="title"
               name="title"
@@ -33,14 +34,12 @@ const NewBoard = ({ setIsFormOpen, getAllKudoBoards}) => {
               type="text"
               id="author"
               name="author"
-              placeholder="Author"
+              placeholder="Author (Optional) "
             ></input>
-            <label>
-              {/* Img <input type="file" id="imgfile" name="imgfile"></input> */}
-            </label>
             <select name="type" id="type" defaultValue={"Default"}>
-              <option value="default">Default</option>
-              <option value="1">1</option>
+              <option value="celebration">Celebration</option>
+              <option value="thankyou">Thank you</option>
+              <option value="inspiration">Inspiration</option>
             </select>
             <button type="submit">Submit</button>
           </form>

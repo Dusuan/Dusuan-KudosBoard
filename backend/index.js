@@ -12,9 +12,11 @@ app.use(express.json());
 
 const kudoboards = require('./routes/kudoboards')
 const kudos = require('./routes/kudos')
+const kudocomments = require('./routes/kudocomments')
 
 app.use("/kudos", kudos)
 app.use('/kudoboards', kudoboards)
+app.use('/kudocomments', kudocomments)
 
 app.get('/', ({req, res})=> {
     res.send("Defualt")

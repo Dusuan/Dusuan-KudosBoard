@@ -1,0 +1,5 @@
+.Footer {
+  background-color: var(--foreground-color);
+  color: var(--accents-color);
+  height: 100px;
+}

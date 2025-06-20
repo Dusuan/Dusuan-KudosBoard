@@ -1,4 +1,4 @@
-.NewBoardContent {
+.CommentModalContent {
   overflow: auto;
   color: var(--accents-color);
   padding: 40px;
@@ -14,7 +14,7 @@
   border-radius: 10px;
   background-color: var(--background-color);
 }
-.NewBoard {
+.CommentModal{
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
@@ -26,6 +26,7 @@
   overflow-y: auto;
 }
 .Form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 50px;

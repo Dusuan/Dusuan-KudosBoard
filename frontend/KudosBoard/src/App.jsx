@@ -5,33 +5,30 @@ import { Routes, Route } from "react-router-dom";
 import Main from "./components/Main";
 import BoardPage from "./components/BoardPage";
 import NotFound from "./components/NotFound"
+import { fetchBoards } from "./APIHandler";
 function App() {
   const [IsFormOpen, setIsFormOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
+  const [darkTheme, setDarkTheme] = useState(false)
+ 
   return (
     <div
       className="App"
-      style={IsFormOpen ? { overflow: "hidden" } : { overflow: "none" }}
+      data-theme={darkTheme ? "dark" : ""}
     >
       <Routes>
         <Route
           path="/"
           element={
             <Main
+              darkTheme={darkTheme}
+              setDarkTheme={setDarkTheme}
               IsFormOpen={IsFormOpen}
               setIsFormOpen={setIsFormOpen}
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              handleSearchChange={handleSearchChange}
             />
           }
         ></Route>
-        <Route path="/smelse" element={<NoBoards />} />
-        <Route path="/board/:id" element={<BoardPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/board/:id" element={<BoardPage darkTheme={darkTheme} setDarkTheme={setDarkTheme}/>} />
+        <Route path="*" element={<NotFound  />} />
       </Routes>
     </div>
   );

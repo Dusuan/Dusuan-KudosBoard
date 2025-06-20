@@ -3,4 +3,15 @@
   gap: 40px;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, 300px);
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+.BoardPage {
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  flex: 1;
+  justify-content: space-between;
 }

@@ -1,7 +1,18 @@
-const Header = () => {
-    return(<div>
-<h1> Header </h1>
-    </div>)
-}
+import "./styles/Header.css";
 
-export default Header
+const Header = ({setDarkTheme, darkTheme}) => {
+
+  const handleSetDarkTheme= () => {
+    setDarkTheme(!darkTheme)
+  }
+
+  return (
+    <div className="Header">
+      <div></div>
+      <h1> KudoBoard </h1>
+      <button onClick={handleSetDarkTheme}> Light/Dark </button>
+    </div>
+  );
+};
+
+export default Header;
