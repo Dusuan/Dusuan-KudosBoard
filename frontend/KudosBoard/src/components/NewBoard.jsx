@@ -24,6 +24,7 @@ const NewBoard = ({ setIsFormOpen, getAllKudoBoards }) => {
         <div className="FormContainer">
           <form className="Form" onSubmit={handleSubmit}>
             <input
+              required={true}
               type="text"
               id="title"
               name="title"
@@ -35,9 +36,6 @@ const NewBoard = ({ setIsFormOpen, getAllKudoBoards }) => {
               name="author"
               placeholder="Author (Optional) "
             ></input>
-            <label>
-              {/* Img <input type="file" id="imgfile" name="imgfile"></input> */}
-            </label>
             <select name="type" id="type" defaultValue={"Default"}>
               <option value="celebration">Celebration</option>
               <option value="thankyou">Thank you</option>

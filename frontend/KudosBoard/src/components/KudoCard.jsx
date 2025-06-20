@@ -1,5 +1,5 @@
 import "./styles/KudoCard.css";
-import { useState } from 'react'
+import { useState } from "react";
 import { upVote } from "../APIHandler";
 const KudoCard = ({
   KudocardId,
@@ -11,22 +11,30 @@ const KudoCard = ({
   isPinned,
   datePinned,
   handleDeleteKudo,
-
+  handleOpenCommentModal,
+  setKudoInfo,
 }) => {
-
-  const [UpVotes, setUpvotes] = useState(upvotes)
+  const [UpVotes, setUpvotes] = useState(upvotes);
 
   const handleDeleteCard = (id) => {
-    console.log(`kudo with id: ${id} deleted`)
-    handleDeleteKudo(id)
+    console.log(`kudo with id: ${id} deleted`);
+    handleDeleteKudo(id);
   };
+
+  const handleSetKudoInfo = () => [
+    setKudoInfo({
+      title: title,
+      creator: creator,
+      media: media,
+      id: KudocardId
+    }),
+  ];
 
   const handleOnUpvote = () => {
     const more = UpVotes + 1;
-    setUpvotes(more)
-    upVote(more, KudocardId)
-  }
-
+    setUpvotes(more);
+    upVote(more, KudocardId);
+  };
   // useEffect(() => {
 
   // }, [])
@@ -38,7 +46,7 @@ const KudoCard = ({
           className="card-image"
           width={200}
           height={300}
-          src={`${media !== null ? `${media}` : "../../top.webp"}`}
+          src={`${media !== null ? media : "../../top.webp"}`}
         />
       </div>
       <div>
@@ -52,6 +60,14 @@ const KudoCard = ({
         <button onClick={handleOnUpvote}>Upvote : {UpVotes}</button>
         <button onClick={() => handleDeleteCard(KudocardId)}>
           Delete card
+        </button>
+        <button
+          onClick={() => {
+            handleOpenCommentModal();
+            handleSetKudoInfo()
+          }}
+        >
+          Comments
         </button>
       </div>
     </div>

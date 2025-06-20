@@ -2,22 +2,31 @@ import "./styles/BoardPage.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import KudoCard from "./KudoCard";
+import CommentModal from './CommentModal'
 import { useParams } from "react-router-dom";
 import { fetchKudos } from "../APIHandler";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteKudos } from "../APIHandler";
 
+
 import NewKudo from "./NewKudo";
 
 const BoardPage = () => {
   const [NewKudoModal, setNewKudoModal] = useState(false);
+  const [openCommentModal, setOpenCommentModal] = useState(false)
   const { id } = useParams();
   const [kudos, setKudos] = useState([]);
+  const [kudoInfo, setKudoInfo] = useState({})
 
   const handleOpenKudoModal = () => {
     setNewKudoModal(true)
   }
+  const handleOpenCommentModal = () => {
+    setOpenCommentModal(true)
+  }
+
+
 
   const getAllKudoCards = async () => {
     const kudos = await fetchKudos(id);
@@ -40,7 +49,7 @@ const BoardPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="BoardPage">
       <Header />
 
       <div>
@@ -54,15 +63,16 @@ const BoardPage = () => {
       </div>
 
       {NewKudoModal ? <NewKudo setNewKudoModal={setNewKudoModal} getAllKudoCards={getAllKudoCards} id={id}/>  : <></>}
+      {openCommentModal ? <CommentModal {...kudoInfo} setOpenCommentModal={setOpenCommentModal}/> : <></>}
 
-      {kudos.length < 1 ? (
+      {kudos == null || kudos.length < 1 ? (
         <h1>No cards available</h1>
       ) : (
         <div className="Kudos">
           {kudos.map((kudo) => {
             return (
               <div key={kudo.KudocardId}>
-                <KudoCard {...kudo} handleDeleteKudo={handleDeleteKudo} />
+                <KudoCard {...kudo} setKudoInfo={setKudoInfo} handleOpenCommentModal={handleOpenCommentModal} handleDeleteKudo={handleDeleteKudo} />
               </div>
             );
           })}

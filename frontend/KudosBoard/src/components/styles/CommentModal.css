@@ -1,6 +1,6 @@
-.NewBoardContent {
+.CommentModalContent {
   overflow: auto;
-  color: white;
+  color: black;
   padding: 40px;
   overflow: hidden;
   display: flex;
@@ -14,7 +14,7 @@
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
 }
-.NewBoard {
+.CommentModal{
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
@@ -40,11 +40,3 @@
   display: flex;
   justify-content: center;
 }
-.gifs{
-  justify-content: center;
-  width: 100%;
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(3, 100px );
-}
-

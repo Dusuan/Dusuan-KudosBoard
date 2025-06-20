@@ -1,7 +1,11 @@
-const Header = () => {
-    return(<div>
-<h1> Header </h1>
-    </div>)
-}
+import "./styles/Header.css";
 
-export default Header
+const Header = () => {
+  return (
+    <div className="Header">
+      <h1> KudoBoard </h1>
+    </div>
+  );
+};
+
+export default Header;

@@ -4,12 +4,12 @@ import { postKudos, getGifs } from "../APIHandler";
 
 const NewKudo = ({ setNewKudoModal, getAllKudoCards, id }) => {
   const [gifVal, setGifVal] = useState("");
-  const [selectedGif, setSelectedGif] = useState("")
+  const [selectedGif, setSelectedGif] = useState("");
   const [gifs, setGifs] = useState([]);
 
   const handleSelectGif = (gif) => {
-    setSelectedGif(gif)
-  }
+    setSelectedGif(gif);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,12 +37,14 @@ const NewKudo = ({ setNewKudoModal, getAllKudoCards, id }) => {
         <div className="FormContainer">
           <form className="Form" onSubmit={handleSubmit}>
             <input
+              required={true}
               type="text"
               id="title"
               name="title"
               placeholder="Title"
             ></input>
             <input
+              required={true}
               type="text"
               id="description"
               name="description"
@@ -79,6 +81,7 @@ const NewKudo = ({ setNewKudoModal, getAllKudoCards, id }) => {
               })}
             </div>
             <input
+              required={true}
               type="text"
               id="gifresult"
               name="gifresult"

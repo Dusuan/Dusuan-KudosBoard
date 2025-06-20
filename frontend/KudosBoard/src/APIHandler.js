@@ -148,6 +148,37 @@ const upVote = async (votes, id) => {
   });
 };
 
+const postComment = async (data, id) => {
+  await fetch(`${url}/kudocomments/post/${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      text: data.get("comment"),
+      username: data.get("author"),
+    }),
+  });
+};
+
+const fetchComments = async (id) => {
+  const data = await fetch(`${url}/kudocomments/all/${id}`, GEToptions)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Http error, status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching boards:", error);
+    });
+
+  return data;
+};
+
 export {
   fetchBoards,
   deleteBoard,
@@ -157,4 +188,6 @@ export {
   postKudos,
   getGifs,
   upVote,
+  postComment,
+  fetchComments,
 };

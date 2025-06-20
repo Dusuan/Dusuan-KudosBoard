@@ -13,11 +13,11 @@ Deployed Application (**[required](https://dusuan-kudosboard-1.onrender.com/)**)
 
 - [x] **Home Page Display**
   - [x] Home page includes the following features:
-    - [] Header
+    - [x] Header
     - [x] Banner
     - [x] Search bar
     - [x] List of boards
-    - [ ] Footer
+    - [x] Footer
 - [x] **Display Boards**
   - [x] Users can view a list of all boards in a grid view on the home page.
   - [x] For each board displayed, users can see:
@@ -47,9 +47,9 @@ Deployed Application (**[required](https://dusuan-kudosboard-1.onrender.com/)**)
 - [x] **Add New Board**
   - [x] Users can create a new board on the home page.
   - [x] When creating a new board, users can specify the:
-    - [ ] Title (required)
-    - [ ] Category (required)
-    - [ ] Author (optional)
+    - [x] Title (required)
+    - [x] Category (required)
+    - [x] Author (optional)
   - [] Items listed as required above must have a value to succesffuly create a new board.
   - [x] When the board is successfully created, it appears in the grid of boards. 
 - [x] **Delete Board**
@@ -68,8 +68,8 @@ Deployed Application (**[required](https://dusuan-kudosboard-1.onrender.com/)**)
 - [x] **Add New Card**
   - [x] Users can make a new card associated with the current board. 
   - [x] To successfully create a new card, users must specify the following:
-    - [] Text message (required).
-    - [ ] A gif users can search for and select within the form using the [GIPHY API](https://developers.giphy.com/docs/api/) (required).
+    - [x] Text message (required).
+    - [x] A gif users can search for and select within the form using the [GIPHY API](https://developers.giphy.com/docs/api/) (required).
   - [x] Users are given the option to specify the author of the card.
   - [x] When the new card is successfully created, it appears in the grid of cards. 
 - [x] **Upvote Card**

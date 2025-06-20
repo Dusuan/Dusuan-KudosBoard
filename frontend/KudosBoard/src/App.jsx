@@ -12,7 +12,6 @@ function App() {
   return (
     <div
       className="App"
-      style={IsFormOpen ? { overflow: "hidden" } : { overflow: "none" }}
     >
       <Routes>
         <Route
@@ -24,7 +23,6 @@ function App() {
             />
           }
         ></Route>
-        <Route path="/smelse" element={<NoBoards />} />
         <Route path="/board/:id" element={<BoardPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
