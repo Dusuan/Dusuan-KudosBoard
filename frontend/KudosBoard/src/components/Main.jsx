@@ -8,6 +8,8 @@ import { useState } from "react";
 const Main = ({
   IsFormOpen,
   setIsFormOpen,
+  setDarkTheme,
+  darkTheme
 }) => {
   const [KudoBoards, setKudoBoards] = useState([]);
   const getAllKudoBoards = async () => {
@@ -17,7 +19,7 @@ const Main = ({
 
   return (
     <>
-      <Header />
+      <Header darkTheme={darkTheme} setDarkTheme={setDarkTheme}/>
       <Banner
         getAllKudoBoards={getAllKudoBoards}
         setKudoBoards={setKudoBoards}

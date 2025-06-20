@@ -197,6 +197,25 @@ const fetchComments = async (id) => {
   return data;
 };
 
+const pinKudo = async (id) => {
+  await fetch(`${url}/kudos/pin/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({  }),
+  });
+};
+const unPinKudo = async (id) => {
+  await fetch(`${url}/kudos/unpin/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({  }),
+  });
+};
+
 export {
   fetchBoards,
   fetchBoardById,
@@ -209,4 +228,6 @@ export {
   upVote,
   postComment,
   fetchComments,
+  pinKudo,
+  unPinKudo
 };

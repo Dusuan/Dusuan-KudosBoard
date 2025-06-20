@@ -1,5 +1,13 @@
 .Header {
-  background-color: teal;
-  color: white;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--foreground-color);
+  color: var(--accents-color);
   height: 100px;
+  button{
+    justify-self: center;
+    align-self: center;
+    
+    margin-right: 8px;
+  }
 }

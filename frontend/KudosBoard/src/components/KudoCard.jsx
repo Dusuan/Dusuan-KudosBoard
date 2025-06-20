@@ -1,6 +1,6 @@
 import "./styles/KudoCard.css";
 import { useState } from "react";
-import { upVote } from "../APIHandler";
+import { upVote, pinKudo, unPinKudo } from "../APIHandler";
 const KudoCard = ({
   KudocardId,
   title,
@@ -13,12 +13,23 @@ const KudoCard = ({
   handleDeleteKudo,
   handleOpenCommentModal,
   setKudoInfo,
+  getAllKudoCards
 }) => {
   const [UpVotes, setUpvotes] = useState(upvotes);
-
+  const [localPin, setLocalPin] = useState(isPinned)
   const handleDeleteCard = (id) => {
     console.log(`kudo with id: ${id} deleted`);
     handleDeleteKudo(id);
+  };
+
+  const handleOnPin = async (id) => {
+    setLocalPin((prev) => !prev)
+    if (isPinned) {
+      await unPinKudo(id);
+    } else {
+     await  pinKudo(id);
+    }
+    getAllKudoCards()
   };
 
   const handleSetKudoInfo = () => [
@@ -26,7 +37,7 @@ const KudoCard = ({
       title: title,
       creator: creator,
       media: media,
-      id: KudocardId
+      id: KudocardId,
     }),
   ];
 
@@ -46,7 +57,7 @@ const KudoCard = ({
           className="card-image"
           width={200}
           height={300}
-          src={`${media !== null ? media : "../../top.webp"}`}
+          src={`${media !== null ? media : "/public/top.webp"}`}
         />
       </div>
       <div>
@@ -57,6 +68,7 @@ const KudoCard = ({
         <div>{creator}</div>
       </div>
       <div className="buttonDiv">
+        <button onClick={() => handleOnPin(KudocardId)} style={{borderColor : localPin ? 'gold' : 'teal' , borderWidth : 2}}>{localPin ? "Unpin" : "Pin"}</button>
         <button onClick={handleOnUpvote}>Upvote : {UpVotes}</button>
         <button onClick={() => handleDeleteCard(KudocardId)}>
           Delete card
@@ -64,7 +76,7 @@ const KudoCard = ({
         <button
           onClick={() => {
             handleOpenCommentModal();
-            handleSetKudoInfo()
+            handleSetKudoInfo();
           }}
         >
           Comments

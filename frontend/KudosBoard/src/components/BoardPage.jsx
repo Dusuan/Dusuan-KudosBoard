@@ -11,7 +11,7 @@ import { deleteKudos } from "../APIHandler";
 
 import NewKudo from "./NewKudo";
 
-const BoardPage = () => {
+const BoardPage = ({ darkTheme, setDarkTheme }) => {
   const [NewKudoModal, setNewKudoModal] = useState(false);
   const [openCommentModal, setOpenCommentModal] = useState(false);
   const { id } = useParams();
@@ -34,8 +34,18 @@ const BoardPage = () => {
 
   const getAllKudoCards = async () => {
     const kudos = await fetchKudos(id);
-    setKudos(kudos);
+    const sortedPin = PinSort(kudos)
+    setKudos(sortedPin);
   };
+
+  const PinSort = (kudos) => {
+    kudos.sort(function (a,b) {
+      const one = new Date(a.datePinned)
+      const two = new Date(b.datePinned)
+      return two - one; 
+    })
+    return kudos;
+  }
 
   const handleDeleteKudo = async (id) => {
     // const filteredBoards = KudoBoards.filter((board) => board.KudoboardId !== id)
@@ -54,7 +64,7 @@ const BoardPage = () => {
 
   return (
     <div className="BoardPage">
-      <Header />
+      <Header darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
       <h1>{boardInfo.title}</h1>
       <div>
         <button>
@@ -90,6 +100,7 @@ const BoardPage = () => {
               <div key={kudo.KudocardId}>
                 <KudoCard
                   {...kudo}
+                  getAllKudoCards={getAllKudoCards}
                   setKudoInfo={setKudoInfo}
                   handleOpenCommentModal={handleOpenCommentModal}
                   handleDeleteKudo={handleDeleteKudo}
