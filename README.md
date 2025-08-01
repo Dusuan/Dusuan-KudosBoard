@@ -11,7 +11,7 @@ Deployed Application (**[required](https://dusuan-kudosboard-1.onrender.com/)**)
 
 #### CORE FEATURES
 
-##### Home Page
+##### Home Pageasdf
 
 - [x] **Home Page Display**
   - [x] Home page includes the following features:
